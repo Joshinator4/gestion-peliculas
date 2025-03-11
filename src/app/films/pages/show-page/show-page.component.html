@@ -1,0 +1,64 @@
+<ng-template #divLoading>
+  <mat-grid-list cols="1">
+    <mat-grid-tile>
+      <mat-spinner>
+
+      </mat-spinner>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-template>
+
+<div *ngIf="film; else divLoading" class="grid p-2">
+  <mat-card class="col-12 sm:col-6">
+    <mat-card-header>
+      <mat-card-title style="color: aqua;">{{film.title}}</mat-card-title>
+      <mat-card-subtitle>Poster film:</mat-card-subtitle>
+    </mat-card-header>
+    <img src="{{FilmImage}}" alt="hero.superhero" mat-card-image>
+  </mat-card>
+
+  <mat-card class="col-12 sm:col-6">
+    <mat-card-header>
+      <mat-card-title>Information</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item><strong>Original title: </strong></mat-list-item>
+          <p class="pl-4" style="color: bisque;">{{film.original_title}}</p>
+        <mat-list-item><strong>Release Date: </strong></mat-list-item>
+          <p class="pl-4" style="color: bisque;">{{film.release_date}}</p>
+        <mat-list-item *ngIf="film.homepage"><strong>Film Link: </strong></mat-list-item>
+          <a class="pl-4" *ngIf="film.homepage" href="{{film.homepage}}" style="color: aquamarine;">{{film.homepage}}</a>
+        <mat-list-item><strong>Film ID: </strong> </mat-list-item>
+          <p class="pl-4" style="color: red;">{{film.id}}</p>
+        <mat-list-item><strong>Overview: </strong> </mat-list-item>
+          <p class="pl-4" style="color: bisque;">{{film.overview}}</p>
+        <mat-list-item><strong>Original lenguage:</strong></mat-list-item>
+          <p class="pl-4" style="color: chartreuse;">{{film.original_language.toUpperCase()}}</p>
+        <mat-list-item><strong>Genres:</strong></mat-list-item>
+          <p class="pl-4" *ngFor="let genre of genreList" style="color: yellow;">{{ genre.name }} </p>
+        <mat-list-item><strong>Production Companys:</strong></mat-list-item>
+          <p class="pl-4" *ngFor="let production_company of film.production_companies" style="color: chartreuse;"><img src="{{ProductionImage(production_company.logo_path)}}" alt="" style="height: 100px;"> <br>{{ production_company.name }} <br></p>
+        <mat-list-item><strong>Production countrys:</strong></mat-list-item>
+          <p class="pl-4" *ngFor="let countries of film.production_countries" style="color: bisque;">{{ countries.name }} </p>
+
+
+      </mat-list>
+      <div class="flex justify-content-between">
+        <button mat-fab extended (click)="volverAlListado()" color="primary">
+          <mat-icon>arrow_back</mat-icon>
+          <span>Back to search page</span>
+        </button>
+        <button mat-fab extended *ngIf="!isFavorite" (click)="addFavoriteFilm()" color="accent">
+          <mat-icon>favorite</mat-icon>
+          <span>Add to Favorites</span>
+        </button>
+        <button mat-fab extended *ngIf="isFavorite" (click)="deleteFavorites()" color="warn">
+          <mat-icon>delete</mat-icon>
+          <span>Delete Favorite</span>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
