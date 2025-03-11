@@ -15,5 +15,5 @@ export const environment = {
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
 
-export const URL_BASE = 'http://143.47.58.20/app.radfpd.es';
+export const URL_BASE = 'https://cors-anywhere.herokuapp.com/http://143.47.58.20/app.radfpd.es';
 export const URL_API = `${URL_BASE}/api/private`;
