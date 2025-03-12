@@ -3,41 +3,23 @@
   <small *ngIf="currentUser.id_usuario">{{currentUser.usuario}}</small>
 </h1>
 <mat-divider class="mb-2"></mat-divider>
-
 <div class="grid">
-
   <div class="col-12">
     <mat-card>
       <mat-card-content>
       <mat-card-title>Add User</mat-card-title>
         <form id="userForm" class="grid" [formGroup]="userForm" (ngSubmit)="confirmEdit()">
-
           <mat-form-field class="col-12">
             <mat-label>User (email)</mat-label>
-            <input
-            type="email"
-            matInput
-            required
-            formControlName="usuario"
-            >
+            <input type="email" matInput required formControlName="usuario">
           </mat-form-field>
-
           <mat-form-field class="col-12">
             <mat-label>Password</mat-label>
-            <input
-            type="password"
-            matInput
-            formControlName="password"
-            >
+            <input type="password" matInput formControlName="password">
           </mat-form-field>
-
           <mat-form-field class="col-12">
             <mat-label>Rol</mat-label>
-            <mat-select
-              required
-              formControlName="id_rol"
-              matInput
-              >
+            <mat-select required formControlName="id_rol" matInput>
               <mat-option *ngFor="let rol of rolList" value="{{ rol.id_rol }}">
                 {{ rol.rol }}
               </mat-option>
@@ -46,21 +28,11 @@
 
           <mat-form-field class="col-12">
             <mat-label>Public Name</mat-label>
-            <input
-            type="text"
-            matInput
-            required
-            formControlName="nombre_publico"
-            >
+            <input type="text" matInput required formControlName="nombre_publico">
           </mat-form-field>
-
           <mat-form-field class="col-12">
             <mat-label>Observations</mat-label>
-            <input
-            type="text"
-            matInput
-            formControlName="observaciones"
-            >
+            <input type="text" matInput formControlName="observaciones">
           </mat-form-field>
         </form>
         <div class="flex justify-content-between">
@@ -68,7 +40,6 @@
           <button *ngIf="!edit && userForm.valid" mat-flat-button color="primary" (click)="addUser()">Create user</button>
           <button *ngIf="user" mat-flat-button color="warn" (click)="destroyUser()">Delete User</button>
         </div>
-
       </mat-card-content>
     </mat-card>
   </div>

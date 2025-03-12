@@ -12,8 +12,6 @@ const ENDPOINT = 'usuario';
 })
 export class UsersService {
 
-  existeUser: boolean = false;
-
   usuarios: Usuario[] = [];
 
   constructor(private http: HttpClient, private commonService: CommonService) {
@@ -21,19 +19,6 @@ export class UsersService {
 
   getUsuarioByID(id: number, route?: string){
     return this.http.put<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id=${id}`, { headers: this.commonService.headers });
-  }
-
-  existeUsuario(token: string){
-    const encodedToken = btoa(token);
-    return this.http.put<ApiResponse>(`${URL_API}/${ENDPOINT}.php?token=${encodedToken}&route=existe_usuario`, { headers: this.commonService.headers });
-  }
-
-  async onExisteUsuario(token: string){
-    const RESPONSE = await this.existeUsuario(token).toPromise();
-    if(RESPONSE.ok){
-      console.log(RESPONSE.data)
-      this.existeUser = RESPONSE.data
-    }
   }
 
   getAllUsuarios() {

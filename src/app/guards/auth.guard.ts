@@ -1,15 +1,15 @@
 import { inject } from '@angular/core';
-import { Router, CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, Route, UrlSegment, CanMatchFn } from '@angular/router';
+import { Router, CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, Route, UrlSegment, CanMatchFn, CanActivate } from '@angular/router';
 
 import { AuthService } from 'src/services/auth.service';
 import { UsersService } from '../users/services/users.service';
+import { FavoritesService } from '../films/services/favorites.service';
+import { CommonService } from '../shared/common.service';
+
 
 const checkAuthStatus = (): boolean => {
-  const usersService: UsersService = inject(UsersService)
+  const favoritesService: FavoritesService = inject(FavoritesService)
   const router: Router = inject(Router)
-
-  usersService.onExisteUsuario(localStorage.getItem('token') ? localStorage.getItem('token')! : "");
-  let existeUser = usersService.existeUser;
   if(!localStorage.getItem('token')){
     router.navigate(['/'])
   }
@@ -33,5 +33,4 @@ export const canMatchGuard: CanMatchFn = ( //tipado CanMatchFN
 
   return checkAuthStatus();
 }
-
 

@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FavoritesService } from 'src/app/films/services/favorites.service';
 import { FilmsService } from 'src/app/films/services/films.service';
-import { Favorite } from 'src/app/interfaces/favorite.interface';
 import { SpecificFilm } from 'src/app/interfaces/specificFilm.interface';
 import { CLOSE } from 'src/app/shared/messages';
 

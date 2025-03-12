@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { URL_API } from 'src/environments/environment';
 import { ApiResponse } from 'src/app/interfaces/api-response';
 import { CommonService } from 'src/app/shared/common.service';
-import { Favorite } from 'src/app/interfaces/favorite.interface';
-import { Observable } from 'rxjs';
 
 const ENDPOINT = 'favorito';
 
@@ -12,6 +10,8 @@ const ENDPOINT = 'favorito';
   providedIn: 'root'
 })
 export class FavoritesService {
+
+  existeUser: boolean = false;
 
   favorites: number[]=[];
 
